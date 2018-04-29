@@ -20,7 +20,6 @@ function render(Component, products){
 };
 store.dispatch(fetchProducts())
     .then((response)=>{
-        console.log(response.data.products);
         /*if(!localStorage.getItem('cart')){
             localStorage.setItem('cart',
                 JSON.stringify(

@@ -7,9 +7,9 @@ export const fetchProducts = () =>(dispatch, getState)=>{
         
 };
 
-export const getCart = (products) =>{
+export const getProducts = (products) =>{
 	return {
-		type: 'GET_CART',
+		type: 'GET_PRODUCTS',
 		products
 	}
 };

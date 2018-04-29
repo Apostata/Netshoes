@@ -1,6 +1,6 @@
 export const productsReducer = (state =[], action)=>{
     switch(action.type){
-        case 'GET_CART':
+        case 'GET_PRODUCTS':
             return [
                 ...state,
                 ...action.products
