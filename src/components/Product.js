@@ -1,26 +1,40 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from "../redux/actions";
 import VariationList from './VariationList';
+
+import ShoppingApi from "../api/api";
 
 const imagePath = require("../images/familia.jpg")
 
-export default class Product extends React.Component{
+export class Product extends React.Component{
     constructor(props){
         super(props)
     }
+    addToCart(){
+        let {dispatch} = this.props;
+        let {product} = this.props;
 
-    addToCart(id){
-        console.log(id);
+        dispatch(actions.addCartItem(product))
+    }
+
+    removeFromCart(){
+        let {dispatch} = this.props;
+        let {product} = this.props;
+
+        dispatch(actions.removeCartItem(product))
     }
 
     render(){
+        let {product} = this.props;
         let renderInstallments = ()=>{
-            let installmentPrice = (this.props.price / this.props.installments).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2});
+            let installmentPrice = (product.price / product.installments).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2});
             return(
                 <div className="installments">
                     <span className="or">ou</span>
-                    <strong className="installmentNum">{this.props.installments}</strong>
+                    <strong className="installmentNum">{product.installments}</strong>
                     <span className="of">de</span>
-                    <strong className="installmentPrice">{this.props.currencyFormat}{installmentPrice}</strong>
+                    <strong className="installmentPrice">{product.currencyFormat}{installmentPrice}</strong>
                 </div>
             )
         };
@@ -31,18 +45,21 @@ export default class Product extends React.Component{
                     <img src={imagePath} width='100' height='100'/>
                 </figure>
                 <div className="product-data">
+                    <div className="removeFromCart">
+                        <a className="add" onClick={()=>this.removeFromCart()}>Excluir</a>
+                    </div>
                     <h3>
-                        <span>{this.props.title}</span>
-                        <p>{this.props.descriotion}</p>
+                        <span>{product.title}</span>
+                        <p>{product.descriotion}</p>
                     </h3>
                     <div className="price-data">
                         <div className="price">
-                            {this.props.currencyFormat}
-                            {this.props.price.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2})}
+                            {product.currencyFormat}
+                            {product.price.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2})}
                             {renderInstallments()}
-                            <VariationList variations={this.props.availableSizes}/>
+                            <VariationList variations={product.availableSizes}/>
                             <div className="addTocart">
-                                <a className="add" onClick={()=>this.addToCart(this.props.id)}>Adicionar ao carrinho</a>
+                                <a className="add" onClick={()=>this.addToCart()}>Adicionar ao carrinho</a>
                             </div>
                         </div>
                     </div>
@@ -51,3 +68,5 @@ export default class Product extends React.Component{
         )
     }
 };
+
+export default connect()(Product);

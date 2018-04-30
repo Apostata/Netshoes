@@ -4,10 +4,10 @@ import AppRoot from "./components/AppRoot";
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from "react-redux";
 import configureStore from "./redux/store";
-import { fetchProducts, getCart} from "./redux/actions";
+import ShoppingApi from "./api/api";
+import * as actions from "./redux/actions";
 
 const store = configureStore({});
-
 function render(Component, products){
     ReactDOM.render( //colocar ainda a store
         <Provider store={store}>
@@ -18,16 +18,25 @@ function render(Component, products){
         document.getElementById("react-root")
     )
 };
-store.dispatch(fetchProducts())
+ShoppingApi.fetchProducts()
     .then((response)=>{
-        /*if(!localStorage.getItem('cart')){
-            localStorage.setItem('cart',
-                JSON.stringify(
-                    store.dispatch(getCart())
-                )
-            );
-        }*/
-        render(AppRoot, response.data.products);
+        let products=[];
+        response.data.products.forEach(function(element) {
+           products.push(element);
+        }, this);
+        store.subscribe(()=>{     
+                
+            let state = store.getState();
+            /*-- definindo os estados iniciais --*/
+            let cart = ShoppingApi.getCart([]);
+            if(Array.isArray(cart) && cart.length > 0){
+                state = cart;
+                ShoppingApi.setCart();
+            }
+        });
+
+        //store.dispatch(actions.addProducts(response.data.products));
+        render(AppRoot, products);
     }
 );
     

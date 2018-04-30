@@ -1,15 +1,20 @@
-import axios from 'axios';
-
-export const fetchProducts = () =>(dispatch, getState)=>{
-    let productsEndPoint = "/products";
-    let promise = axios.get(productsEndPoint);
-    return promise;
-        
-};
-
-export const getProducts = (products) =>{
-	return {
-		type: 'GET_PRODUCTS',
+export const addCart = (products)=>{
+    return {
+		type: 'ADD_CART',
 		products
 	}
+};
+
+export const addCartItem = (product)=>{
+    return{
+        type: 'ADD_CART_ITEM',
+        product
+    }
+};
+
+export const removeCartItem =(product)=>{
+    return{
+        type: 'REMOVE_CART_ITEM',
+        product
+    }
 };

@@ -1,17 +1,19 @@
 import React from 'react';
 import Product from './Product';
+import * as actions from "../redux/actions";
 
-export default class Shelf extends React.Component {
+import {connect} from 'react-redux';
+
+export class Shelf extends React.Component {
     constructor(props){
         super(props)
-        this.state ={
-        }
     }
     render(){
+        let {products} = this.props;
         let renderShelf = () => {
-            if(this.props.products.length > 0){
-                return this.props.products.map((product)=>{
-                    return <Product key={product.id}{...product}/>
+            if(products.length > 0){
+                return products.map((product)=>{
+                    return <Product key={product.id} product={product} />
                 })
             }
         }
@@ -23,3 +25,9 @@ export default class Shelf extends React.Component {
         )
     }
 };
+
+export default connect(
+    (state)=>{
+		return state;
+	}
+)(Shelf);

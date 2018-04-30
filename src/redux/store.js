@@ -1,8 +1,9 @@
-import { createStore, applyMiddleware, compose } from "redux"
-import { productsReducer } from "./reducers"
+import { createStore, applyMiddleware, compose, combineReducers } from "redux"
+import {cartReducer} from "./reducers"
 import thunk from "redux-thunk"
 
 const preloadedState = {}
+
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -12,7 +13,12 @@ const composeEnhancers =
 const enhancer = composeEnhancers(applyMiddleware(thunk))
 
 export default initialState => {
-    const store = createStore(productsReducer, preloadedState, enhancer)
+    let reducer = combineReducers({
+		//products: productsReducer,
+        cart: cartReducer
+    });
+    
+    const store = createStore(reducer, preloadedState, enhancer)
     if (module.hot) {
         module.hot.accept("./reducers", () =>{
         store.replaceReducer(require("./reducers"))
