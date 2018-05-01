@@ -9,12 +9,18 @@ export class CartList extends React.Component {
    
     render(){
         let {products} = this.props;
-        
         let renderCart = () => {
-            if(products.length > 0){
-                return products.map((product)=>{
-                    return <Product key={product.id} product={product}/>
-                })
+            if(products){
+                console.log(products);
+                if(products.length > 0){
+                    return products.map((product)=>{
+                        console.log(product);
+                        return <Product key={product.id} product={product}/>
+                    })
+                }
+            }
+            else{
+                return(<p>Carrinho vazio!</p>);
             }
         }
 

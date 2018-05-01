@@ -23,7 +23,7 @@ export class CartButton extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="cart-btn-wrapper">
                 <a className="btn-cart" onClick={()=>this.showHideCart()}>Abir/Fechar Carrinho</a>
             </div>
         )

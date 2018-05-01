@@ -28,8 +28,6 @@ export class AppRoot extends React.Component {
     }
     
     componentDidUpdate(){
-        console.log(this.state.cart);
-        console.log(this.state.toggleCart);
         ShoppingApi.setCart(this.state.cart);
     }
     
@@ -45,6 +43,15 @@ export class AppRoot extends React.Component {
         return(
             <div>        
                 <div className= {todoCartClassName}>
+                    <div className="cart-box-wrapper">
+                        <div className="cart-list">
+                            <div className="container">
+                                <CartButton />    
+                                <CartList products={cart} />
+                            </div>    
+                        </div>
+                    </div>
+
                     <header className="header-wrapper">
                         
                         <div className="header-top-wrapper">
@@ -106,11 +113,7 @@ export class AppRoot extends React.Component {
                                 </div>    
                             </div>    
                         </div>
-                    </header>
-                    <div className="cart-box-wrapper">
-                        <CartButton />    
-                        <CartList products={cart} />
-                    </div>    
+                    </header>    
 
                     <div className="content-wrapper">
                         <div className="container">

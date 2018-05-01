@@ -11,6 +11,7 @@ export class Product extends React.Component{
     constructor(props){
         super(props)
     }
+
     addToCart(){
         let {dispatch} = this.props;
         let {product} = this.props;

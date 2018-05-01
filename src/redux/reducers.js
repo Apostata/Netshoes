@@ -14,11 +14,12 @@ export const cartReducer = (state=[], action)=>{
             ];
         
         case 'REMOVE_CART_ITEM':
-        return state.map((product)=>{
-            if(product.id !== action.product.id){
-                return product
-            }
+
+        return state.filter(({id}) =>{
+            return id !== action.product.id
         });
+        
+       
 
         default:
             return state;
