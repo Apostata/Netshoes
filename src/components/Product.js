@@ -46,7 +46,7 @@ export class Product extends React.Component{
         return(
             <div className="col-xs-12 col-sm-6 col-md-4 product">
                 <figure>
-                    <img src={imagePath} width='100' height='100'/>
+                    <img src={imagePath} />
                 </figure>
                 <div className="product-data">
                     <div className="removeFromCart">
@@ -57,8 +57,10 @@ export class Product extends React.Component{
                         <p>{product.descriotion}</p>
                     </h3>
                     <div className="price-data">
-                        <span className="currency-format">{product.currencyFormat}</span>
-                        <span className="price">{product.price.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2})}</span>
+                        <div className="current-price">
+                            <span className="currency-format">{product.currencyFormat}</span>
+                            <span className="price">{product.price.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2})}</span>
+                        </div>
                         {renderInstallments()}
                         <VariationList variations={product.availableSizes}/>
                         <div className="addTocart">

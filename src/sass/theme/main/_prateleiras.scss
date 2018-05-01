@@ -29,7 +29,28 @@
         margin: 0 auto;
 
         .removeFromCart{
+            
+            a{
+                @extend .hide-font;
+                min-width: 30px;
+                min-height: 30px;
+                
+                &:before{
+                    @extend .font-fontawesome;
+                    content: "\f00d";
+                    color: red;
+                    font-size: 15px;
+                    cursor: pointer;
+                }
+            }
 
+            &:hover{
+                a{
+                    &:before{
+                        color: darken(red, 15%);
+                    }
+                }
+            }
         }
 
         h3{
@@ -42,6 +63,7 @@
             text-align: center;
             position: relative;
             padding-top: 5px;
+            
 
             &:before{
                 content: "";
@@ -147,8 +169,117 @@
 .cart-box-wrapper{
    .cart-list{
        .cart-resume{
+           overflow-y: auto;
+
             .product{
                 width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid black;
+                
+                figure{
+                    max-width: 120px;
+                    min-width: 50px;
+                    min-height: 50px;
+                    display: inline-block;
+                    vertical-align: middle;
+
+                    img{
+                        position: relative;
+                        padding: 20px;
+                        @include box-sizing(border-box);
+                    }
+                }
+                .product-data{
+                    min-width: 80%;
+                    max-width: 80%;
+                    display: inline-block;
+                    vertical-align: middle;
+                    position: relative;
+                    @include box-sizing(border-box);
+
+                    .removeFromCart{
+                        position: absolute;
+                        top: 50%;
+                        right: 10px;
+                    }
+                    
+                    h3{
+                        color: white;
+                        font-size: 14px;
+                        vertical-align: middle;
+                        @include box-sizing(border-box);
+                        padding: 0 5px;
+                        text-align: left
+                    }
+
+                    .price-data{
+                        color: white;
+                        vertical-align: middle;
+                        @include box-sizing(border-box);
+                        padding: 0 5px;
+                        text-align: left;
+                        max-width: 90%;
+                        position: relative;
+
+                        &:before{
+                            display: none;
+                        }
+
+                        .current-price{
+                            position: absolute;
+                            right: 0;
+                            top: -15px;
+                            display: inline-block;
+                            vertical-align: middle;
+                            @include box-sizing(border-box);
+                            padding: 0 5px;
+
+                            @media screen and (max-width: $sm){
+                                position: relative;
+                                top: 0px;
+                            }
+                        }
+
+                        .installments{
+                            position: absolute;
+                            right: 0;
+                            top: 15px;
+                            display: inline-block;
+                            vertical-align: middle;
+                            @include box-sizing(border-box);
+                            padding: 0 5px;
+
+                            @media screen and (max-width: $sm){
+                                position: relative;
+                                top: 0px;
+                            }
+                            
+                        }
+
+                        .variations{
+                            color: white;
+                            @include box-sizing(border-box);
+                            padding: 0 5px;
+
+                           
+                        }
+
+                        .addTocart{
+                            display: none;
+                        }
+                    }
+                }
+
+                &:hover{
+                    .figure{
+                        img{
+                            @include scale(1);
+                        }
+                    }
+
+                    
+                }
+
             }
        }
    }

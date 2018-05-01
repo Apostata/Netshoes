@@ -25,14 +25,14 @@
         min-width: 310px;
         max-width: 65%;
         float: right;
-        background: black;
+        background: $cinza-escuro;
         min-height: 100%;
         @include translate(100%, 0);
         
         .cart-btn-wrapper{
             @extend .col-xs-12;
             text-align: left;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid black;
 
             .btn-cart{
                 display: block;
@@ -52,6 +52,16 @@
                     }
                 }
             }
+        }
+
+        .cart-resume{
+            @include box-sizing(border-box);
+            width: 101%;
+            max-height: 90%;
+            position: absolute;
+            display: block;
+            top: 10%;
+            padding-right: 15px;
         }
     }
 }
