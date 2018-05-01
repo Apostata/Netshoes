@@ -17,7 +17,9 @@ export default class VariationList extends React.Component{
 
         return(
             <div className="variations">
-                {renderItemList()}
+                <ul>
+                    {renderItemList()}
+                </ul>    
             </div>    
         )
     }

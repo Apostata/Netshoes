@@ -34,7 +34,10 @@ export class Product extends React.Component{
                     <span className="or">ou</span>
                     <strong className="installmentNum">{product.installments}</strong>
                     <span className="of">de</span>
-                    <strong className="installmentPrice">{product.currencyFormat}{installmentPrice}</strong>
+                    <strong className="installmentPrice">
+                        <span className="currency-format">{product.currencyFormat}</span>
+                        <span className="price">{installmentPrice}</span>
+                    </strong>
                 </div>
             )
         };
@@ -53,14 +56,12 @@ export class Product extends React.Component{
                         <p>{product.descriotion}</p>
                     </h3>
                     <div className="price-data">
-                        <div className="price">
-                            {product.currencyFormat}
-                            {product.price.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2})}
-                            {renderInstallments()}
-                            <VariationList variations={product.availableSizes}/>
-                            <div className="addTocart">
-                                <a className="add" onClick={()=>this.addToCart()}>Adicionar ao carrinho</a>
-                            </div>
+                        <span className="currency-format">{product.currencyFormat}</span>
+                        <span className="price">{product.price.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2})}</span>
+                        {renderInstallments()}
+                        <VariationList variations={product.availableSizes}/>
+                        <div className="addTocart">
+                            <a className="add" onClick={()=>this.addToCart()}>Adicionar ao carrinho</a>
                         </div>
                     </div>
                 </div>
