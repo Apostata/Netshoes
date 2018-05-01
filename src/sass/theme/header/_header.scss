@@ -1,0 +1,83 @@
+@charset "UTF-8"; //para usar acentos, deve estar em todos os arquivos
+
+.header-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    background:black;
+		@include transition(all 500ms ease-in-out 0ms);
+		min-height: 100px;
+		
+		.header-top-wrapper{
+				padding: 10px 0;
+				border-bottom: 1px solid white;
+
+				@media screen and (max-width: $md){
+					padding: 25px;
+				}
+
+				.header-institucional{
+						ul{
+								li{
+										float: left;
+
+										a{
+											display: block;
+											margin: 0 auto;
+											padding: 5px 10px;
+											position: relative;
+
+											&:before{
+												content: "";
+												position: absolute;
+												left: -1px;
+												top: 10%;
+												width: 1px;
+												height: 80%;
+												background: white;
+												display: block;
+											}
+										}
+										&:first-child{
+											a{
+												&:before{
+													display: none;
+												}
+											}
+										}
+								}
+						}
+				}
+		}
+
+		.header-mid-wrapper{
+				@import "menu";
+
+				.logo-wrapper{
+						position: relative;
+						
+						.logo-link{
+								img{
+										max-width: 100%;
+										position: absolute;
+										top: -44px;
+										left: 50%;
+										max-width: 120px;
+										margin-left: -60px;		
+										
+									
+										
+								}
+						}
+				}
+
+				.header-mid-content-wrapper{
+					@import "busca";
+					@import "cart";
+				}
+		}
+}
+
+    

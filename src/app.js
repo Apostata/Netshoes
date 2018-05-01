@@ -24,18 +24,14 @@ ShoppingApi.fetchProducts()
         response.data.products.forEach(function(element) {
            products.push(element);
         }, this);
-        store.subscribe(()=>{     
-                
-            let state = store.getState();
-            /*-- definindo os estados iniciais --*/
-            let cart = ShoppingApi.getCart([]);
-            if(Array.isArray(cart) && cart.length > 0){
-                state = cart;
-                ShoppingApi.setCart();
-            }
+
+        store.subscribe(()=>{ 
+            let state = store.getState(); 
         });
 
-        //store.dispatch(actions.addProducts(response.data.products));
+        let cartItens = ShoppingApi.getCart()
+        store.dispatch(actions.addCart(cartItens));
+        
         render(AppRoot, products);
     }
 );

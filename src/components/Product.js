@@ -40,7 +40,7 @@ export class Product extends React.Component{
         };
 
         return(
-            <div className="product">
+            <div className="col-xs-12 col-sm-6 col-md-4 product">
                 <figure>
                     <img src={imagePath} width='100' height='100'/>
                 </figure>

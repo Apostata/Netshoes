@@ -22,13 +22,15 @@ export default class productApi{
        
         if(!localStorage.getItem('cart')){
             cart = [];
+            return cart;
         }
         else{
             let stringCart = localStorage.getItem('cart');
             cart = JSON.parse(stringCart);
+            return cart;
         }
         
-        return cart;       
+               
     } 
     
     static setCart(products){

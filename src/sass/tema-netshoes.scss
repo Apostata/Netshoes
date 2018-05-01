@@ -1,0 +1,42 @@
+/*
+ * Theme x v0 (http://site.com.br)
+ * Copyright 2014-2017 Virtual Ideas | Rene Souza.
+ */
+
+@charset "UTF-8";
+//bootstrap framework
+$colunas: 12;
+$xs: 640px;
+$sm: 768px;
+$md: 992px;
+$lg: 1024px;
+$hd: 1920px;
+
+//bootstrap framework
+@import "bootstrap";
+
+
+//set fonts
+	//set google fonts or another online fonts
+	@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+	.font-default{
+		font-family: Tahoma, Geneva, sans-serif;
+	}
+	
+	//set custom fonts
+	$custom-fonts: true; //se true inicializa carregamento das fontes no arquivo /theme/fonts/_fonts.scss
+	$font-list: fontawesome netshoes;
+
+	; //fonts a serrem carregadas
+	$font-folder:"/"; //para carregar as fontes da raiz do css compilado. Para VTEX colocar ""
+	@import "/fonts/fonts"; //$custom-fonts: true;
+	//manually import extras for fonticons (optinal) 
+	@import "/fonts/fonticon-netshoes";
+
+
+//image folder for css
+$img-folder:"/images/"; //para carregar as imagens da raiz do css compilado. Para VTEX colocar ""
+
+//import entire theme
+@import "theme/setup";
+

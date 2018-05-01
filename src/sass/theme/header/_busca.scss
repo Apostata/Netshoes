@@ -1,0 +1,43 @@
+@charset "UTF-8"; //para usar acentos, deve estar em todos os arquivos
+
+.search-wrapper{
+	.search-form{
+		margin-top: 5px;
+		display: inline-block;
+
+		.search-field{
+			border: 1px solid $cinza-claro;
+			@include border-radius(4px);
+			padding: 5px 0 5px 20px;
+			width: 100%;
+			background: white;
+			display: block;
+			margin: 0 auto;
+			min-height: 32px;
+			float: left;
+
+			&:focus{
+				@include box-shadow(3px 3px 3px $cinza-medio);
+			}
+		}
+
+		.search-submit{
+			float: left;
+			max-height: 32px;
+			@extend .hide-font;
+			margin-left: -46px;
+			background: transparent;
+			@include border-radius(4px 4px 0 0);
+			min-width: 46px;
+			outline: none;
+			border: none;
+
+			&:before{
+				color: black;
+				font-size: 24px;
+				@extend .font-netshoes;
+				content: "\e906";
+			}
+		}
+	}
+}

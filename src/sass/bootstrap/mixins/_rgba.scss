@@ -1,0 +1,7 @@
+/*------ Color with transparency----------*/
+@mixin rgba($attribute, $color, $opacity){
+  $transparency: $opacity / 100;
+  #{$attribute} : $color;
+  #{$attribute} : rgba($color, $transparency);
+}
+// use = @include rgba(background, #fff, 50);

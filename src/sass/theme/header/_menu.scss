@@ -1,0 +1,82 @@
+@charset "UTF-8"; //para usar acentos, deve estar em todos os arquivos
+
+.menu-wrapper{
+	& > ul{
+		text-align: center;
+
+		& > li{
+			display: inline-block;
+			position: static;
+
+			& > a{
+				display: block;
+				padding: 10px;
+				text-transform: uppercase;
+				font-size: 14px;
+				position: relative;
+
+				@media screen and (max-width: $md){
+					font-size: 12px;
+					padding: 15px 4px;
+				}
+				
+				&:before{
+					content: "";
+					position: absolute;
+					left: -1px;
+					top: 10%;
+					width: 1px;
+					height: 80%;
+					background: white;
+					display: block;
+				}
+			}
+
+			.main-sub{
+				background: white;
+				padding: 0;
+				position: absolute;
+				top: 100%;
+				min-width: 529px;
+				max-width: 529px;
+				display: none;
+				border: 1px solid black;
+				border-top: none;
+				
+				ul{
+					text-align: left;
+
+					li{
+						display: block;
+						position: relative;
+			
+						a{
+							color: black;
+							display: block;
+							padding: 5px 10px;
+
+							&:hover{
+								background: $cinza-claro;
+							}
+						}
+					}
+				}
+			}
+
+			&:hover{
+				& .main-sub{
+					display: block;
+				}
+			}
+
+			&:first-child{
+				a{
+					&:before{
+						display: none;
+					}
+				}
+			}
+			
+		}
+	}
+}

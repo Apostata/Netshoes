@@ -1,0 +1,22 @@
+@charset "UTF-8"; //para usar acentos, deve estar em todos os arquivos
+
+.cart-wrapper{
+	.btn-cart{
+		@extend .hide-font;
+		display: inline-block;
+		min-height: 32px;
+		min-width: 32px;
+
+		&:before{
+			@extend .font-netshoes;
+			font-size: 35px;
+			content: "\e90b";
+		}
+
+		&:hover{
+			&:before{
+				color: $cinza-claro;
+			}
+		}
+	}
+}

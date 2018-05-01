@@ -1,0 +1,128 @@
+@charset "UTF-8"; //para usar acentos, deve estar em todos os arquivos
+
+.header-responsive{
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: 999999;
+
+	.header-responsive-top{
+		background: white;
+		display: block;
+		float: left;
+	    max-height: 133px;
+		width: 100%;
+		overflow: visible;
+		//max-height: 65px;
+		@include transition(all 300ms ease-in-out 0ms);
+
+		.menu-wrapper{
+			.reponsiveMenu{
+				position: static;
+				padding: 0;
+				text-align: center;
+				a{
+					@extend .font-default;
+					color: $cinza-escuro;
+					font-size: 25px;
+					display: block;
+					cursor: pointer;
+
+					&:hover, &:active, &:focus{
+						color: black;
+						text-decoration: none;
+					}
+
+					&:before{
+						content: "\f0c9"; 
+						margin-right: 10px;
+						@extend .font-fontawesome;
+					}
+				}
+			}
+		}
+
+		.logo-wrapper{
+			.img-logo{
+				img{
+					display: block;
+					max-width: 170px;
+					width: 100%;
+				    margin: 5px auto;
+					padding: 0px 0;
+				}
+			}
+		}
+
+		.login-wrapper{
+			text-align: center;
+			padding:0;
+
+			a{
+				color: black;
+				display: block;
+				
+
+				&:before{
+					content: "";
+					display: block;
+					font-size: 3rem;
+					@extend .font-gs-brindes;
+				}
+
+				&.minha-conta{
+					font-size: 12px;
+					&:before{
+						content: "\e904";
+					}
+				}
+
+				&.logar{
+					font-size: 12px;
+					&:before{
+						content: "\e901";
+					}
+				}
+			}
+		}
+
+		.cart-wrapper{
+			padding:0;
+			a{
+				display: block;
+				color: black;
+				text-align: center;
+				font-size: 12px;
+			    line-height: 26px;
+
+				&:before{
+					content: "\e90b";
+					display: block;
+				    font-size: 30px;
+					line-height: 40px;
+					@extend .font-gs-brindes;
+				}
+			}
+		}
+	}
+
+	.header-responsive-bot{
+		float: left;
+		width: 100%;
+		background: black;
+	}
+
+	&.suspended{
+		.header-responsive-top{
+			overflow: hidden;
+			max-height: 0;
+			@include transition(all 300ms ease-in-out 0ms);
+			border-bottom-color: $cinza-claro; 
+		}
+
+		.header-responsive-bot{
+			border-bottom: 1px solid $cinza-medio;
+		}
+	}
+}

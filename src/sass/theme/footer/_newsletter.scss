@@ -1,0 +1,126 @@
+.footer-news{
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	padding: 15px 0;
+
+	@media screen and (max-width:$sm){
+		padding-bottom: 0;
+	}
+
+	h3{
+		margin: 10px 0 0;
+		font-size: 30px;
+		font-weight: bold;
+	    letter-spacing: 3px;
+	    color: white;
+	    text-transform: capitalize;
+	}
+	
+	.news-wrapper{
+		position: relative;
+
+		.news-content{
+			left: 0;
+			bottom: 10px;
+			@include box-sizing(border-box);
+			border: 1px solid black;
+			
+			.news-content-left{
+				background: $cinza-medio;
+				h3{
+					color: white;
+				}
+				p{
+					font-size: 14px;
+					font-weight: bold;
+					border: none;
+					color: white;
+					margin: 10px 0;
+					padding: 0;
+
+					@media screen and (max-width: $sm){
+						margin:0;
+					}
+				}
+			}
+			
+			.news-content-right{
+
+				form{
+					color: black;
+					
+					label{
+						display: none;
+					}
+
+					input{
+						display: inline-block;
+						min-height: 92px;
+						border: none;
+						border-right: 1px solid black;
+					    padding: 0 10px;
+					    color: black;
+					    outline: none;
+					    font-size: 14px;
+					    @include transition(all 300ms ease-in-out 0ms);
+					    @include box-sizing(border-box);
+
+					    @media screen and (max-width: $sm) {
+					    	border-right: none;
+					    }
+
+					    &:focus{
+					    	@include box-shadow(inset 2px 3px 6px -2px $cinza-escuro);
+					    } 
+					}
+
+					.news-button{
+						border: none;
+						display: inline-block;
+						min-width: 62px;
+					    height: 92px;
+					    position: relative;
+					    margin: 0px;
+					    line-height: 1.42;
+				        font-size: 16px;
+						text-transform: uppercase;
+						@include box-sizing(border-box);
+					    @include transition(all 300ms ease-in-out 0ms);
+					    outline: none;
+					    background: $amarelo;
+						@include border-radius(0);
+						overflow: hidden;
+						z-index: 1;
+
+					    &:hover{
+					    	background: darken($amarelo, 10%);
+					    }
+					}
+				}
+			}
+		}
+	}
+
+	& + div{
+		position: relative;
+		z-index: 0;
+
+		@media screen and (max-width:$md){
+			width: 100%;
+		}
+
+		&:before{
+		    content: "";
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    display: block;
+		    background: white;
+		    @include opacity(80);
+		}
+	}
+}

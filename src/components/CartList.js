@@ -19,7 +19,7 @@ export class CartList extends React.Component {
         }
 
         return(
-            <div className="prateleira">
+            <div className="cart-resume">
                 {renderCart()}
             </div>
         )

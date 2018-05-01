@@ -1,0 +1,286 @@
+@mixin vendor($prop, $args) {
+  -webkit-#{$prop}: $args;
+  -moz-#{$prop}: $args;
+  -ms-#{$prop}: $args;
+  -o-#{$prop}: $args;
+  #{$prop}: $args;
+}
+
+/*------ base transitions ----------*/
+/*@mixin transition($transition...) {
+  @include vendor('transition', $transition);
+}*/
+//use = @include transition(all 300ms ease-in-out);
+
+// Pass in any number of transitions
+@mixin transition($transitions...) {
+  $unfoldedTransitions: ();
+  @each $transition in $transitions {
+    $unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
+  }
+  
+  //@inlcude vendor('transition', $unfoldedTransitions);
+  -webkit-transition: $unfoldedTransitions;
+  transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition ($transition) {
+  // Default values
+  $property: all;
+  $duration: .2s;
+  $easing: null; // Browser default is ease, which is what we want
+  $delay: null; // Browser default is 0, which is what we want
+  $defaultProperties: ($property, $duration, $easing, $delay);
+
+  // Grab transition properties if they exist
+  $unfoldedTransition: ();
+  @for $i from 1 through length($defaultProperties) {
+    $p: null;
+    @if $i <= length($transition) {
+      $p: nth($transition, $i)
+    } @else {
+      $p: nth($defaultProperties, $i)
+    }
+    $unfoldedTransition: append($unfoldedTransition, $p);
+  }
+
+  @return $unfoldedTransition;
+}
+
+@mixin filter($prop){
+  @include vendor('filter', $prop);
+  filter: gray; /* IE 6-9 */
+}
+
+
+/*------ base opacity ----------*/
+@mixin opacity($opacity) {
+  opacity: $opacity / 100;
+  -ms-filter: alpha(opacity=$opacity); //IE8
+  filter: unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round($opacity) + ')');
+}
+//use = @include opacity(50);
+
+/*------ base box-shadow ----------*/
+@mixin box-shadow($shadows...) {
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+  box-shadow: $shadows;
+}
+//use = @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999);
+@mixin box-sizing($box) {
+  webkit-box-sizing: $box;
+  -moz-box-sizing: $box;
+  box-sizing: $box;
+}
+//use = @include box-sizing(border-box);
+@mixin backface-visibility($prop...){
+  @include vendor('backface-visibility', $prop);
+}
+
+@mixin user-select($select...){
+  @inlcude vendor('user-select', $select);
+}
+
+/*------ base text-shadow ----------*/
+@mixin text-shadow($shadows...) {
+  @include vendor('text-shadow', $shadows);
+}
+//use = @include text-shadow(0px 4px 5px #666);
+
+/*------ base border-radius ----------*/
+@mixin border-radius($radius...) {
+  @include vendor('border-radius', $radius);
+}
+//use = @include border-radius(0px 4px 5px 5px);
+
+// generic transform
+@mixin transform($args...) {
+    @include vendor("transform", $args);
+}
+//use = @incule transform(rotate(180deg));
+
+// rotate
+@mixin rotate($deg) {
+  @include transform(rotate(#{$deg +"deg"}));
+}
+//use = @incule rotate(180);
+
+// scale
+@mixin scale($scale) {
+   @include transform(scale($scale));
+}
+
+// scaleY
+@mixin scaleY($scale) {
+   @include transform(scaleY($scale));
+}
+
+// translate
+@mixin translate($x, $y) {
+   @include transform(translate($x, $y));
+}
+
+// translate 3D
+@mixin translate3d($x, $y, $z) {
+   @include transform(translate3d($x, $y, $z));
+}
+
+// skew
+@mixin skew($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin($origin) {
+  @include vendor('transform-origin', $origin);
+}
+
+/*------ base columns ----------*/
+@mixin columns($columns){
+	$margin: 100 / $columns;
+	$gap: #{$margin +"px"};
+	-moz-column-count: $columns;
+    -moz-column-gap: $gap;
+    -webkit-column-count: $columns;
+    -webkit-column-gap: $gap;
+    column-count: $columns;
+    column-gap: $gap;
+}
+//use = @include columns(2);
+
+@mixin user-select($option...) {
+  -webkit-touch-callout: $option;
+  @include vendor('user-select', $option);
+  -khtml-user-select: $option;
+}
+
+/*------ Color with transparency----------*/
+@mixin rgba($attribute, $color, $opacity){
+	$transparency: $opacity / 100;
+	#{$attribute} : $color;
+	#{$attribute} : rgba($color, $transparency);
+}
+// use = @include rgba(background, #fff, 50);
+
+
+
+/*------ base linear gradient----------*/
+@mixin linear-gradient($origin: left, $start: #ffffff, $stop: #000000) {
+	background-color: $start;
+	background-image: -webkit-linear-gradient($origin, $start, $stop);
+	background-image: -moz-linear-gradient($origin, $start, $stop);
+	background-image: -o-linear-gradient($origin, $start, $stop);
+	background-image: -ms-linear-gradient($origin, $start, $stop);
+	background-image: linear-gradient($origin, $start, $stop);
+}
+//use = @include linear-gradient(left, #fff, #000);
+
+/*------ base reflect----------*/
+@mixin reflect($length: 50%, $opacity: 20, $color:#fff){
+	$transparency: $opacity / 100;
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop($length, transparent), to(rgba($color,$transparency)));
+}
+//use = @include reflect(60%, 60, #fff);
+
+/*------ base animation with keyframes----------*/
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+	$anim: #{$str};
+  @include vendor('animation', $anim);
+}
+/* use =
+	.element {
+		@include keyframes(slide-down) {
+		  0% { opacity: 1; }
+		  90% { opacity: 0; }
+		}
+
+  	@include animation('slide-down 5s 3');
+	}
+*/
+
+/*------ Clearfiz, para elementos flutuantes dentro de outras tags ----------*/
+%clearfix {
+  *zoom: 1;
+
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+//use = @extend %clearfix;
+
+//radom colors
+@mixin backgrounds($c, $y) {
+  background: $c;
+  @for $i from 1 through $y {
+    $k: 3%;
+    $j: $i - 1;
+
+    @if $i == 1 {
+      &:nth-child(#{$i}) { background: $c; }
+    }
+    @else {
+      &:nth-child(#{$i}) { background: darken($c, ($k * $j)); }
+    }
+  }
+}
+//use = @include backgrounds($cinzaMedio, 10);
+
+
+$easefunctions :(
+  'in-quad': cubic-bezier(0.550, 0.085, 0.680, 0.530),
+  'in-cubic': cubic-bezier(0.550, 0.055, 0.675, 0.190),
+  'in-quart': cubic-bezier(0.895, 0.030, 0.685, 0.220),
+  'in-quint': cubic-bezier(0.755, 0.050, 0.855, 0.060),
+  'in-sine': cubic-bezier(0.470, 0.000, 0.745, 0.715),
+  'in-expo': cubic-bezier(0.950, 0.050, 0.795, 0.035),
+  'in-circ': cubic-bezier(0.600, 0.040, 0.980, 0.335),
+  'in-back': cubic-bezier(0.600, -0.280, 0.735, 0.045),
+  'out-quad': cubic-bezier(0.250, 0.460, 0.450, 0.940),
+  'out-cubic': cubic-bezier(0.215, 0.610, 0.355, 1.000),
+  'out-quart': cubic-bezier(0.165, 0.840, 0.440, 1.000),
+  'out-quint': cubic-bezier(0.230, 1.000, 0.320, 1.000),
+  'out-sine': cubic-bezier(0.390, 0.575, 0.565, 1.000),
+  'out-expo': cubic-bezier(0.190, 1.000, 0.220, 1.000),
+  'out-circ': cubic-bezier(0.075, 0.820, 0.165, 1.000),
+  'out-back': cubic-bezier(0.175, 0.885, 0.320, 1.275),
+  'in-out-quad': cubic-bezier(0.455, 0.030, 0.515, 0.955),
+  'in-out-cubic': cubic-bezier(0.645, 0.045, 0.355, 1.000),
+  'in-out-quart': cubic-bezier(0.770, 0.000, 0.175, 1.000),
+  'in-out-quint': cubic-bezier(0.860, 0.000, 0.070, 1.000),
+  'in-out-sine': cubic-bezier(0.445, 0.050, 0.550, 0.950),
+  'in-out-expo': cubic-bezier(1.000, 0.000, 0.000, 1.000),
+  'in-out-circ': cubic-bezier(0.785, 0.135, 0.150, 0.860),
+  'in-out-back': cubic-bezier(0.680, -0.550, 0.265, 1.550)
+);
+
+@function ease($key) {
+  @if map-has-key($easefunctions, $key){
+    @return map-get($easefunctions, $key);
+  }
+}
+
+//use = @include transition(all 300ms ease('in-circ'));
+

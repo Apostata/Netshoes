@@ -1,0 +1,296 @@
+.footer-wrapper{
+    margin-top: 30px;
+	overflow: hidden;
+
+	.footerBg{
+		background: url('#{$img-folder}logo-icon.svg') no-repeat;
+	    background-position: 50% 0;
+    	background-size: contain;
+	}
+
+	.footer-title{
+		font-size: 18px;
+		text-transform: capitalize;
+
+	}
+
+	.footer-mid-wrapper{
+		padding: 20px 0 0;
+		position:relative;
+
+		@media screen and (max-width:$sm){
+			padding-top: 0;
+		}
+		
+		.footer-logo-wrapper{
+			.logo-wrapper{
+				.img-logo{
+					img{
+						padding: 0 30px;
+						@include box-sizing(border-box);
+					}
+				}
+			}
+		}
+
+		.footer-content-wrapper{
+			*{
+				color: $cinza-claro;
+			}
+
+			&:before{
+			    content: "";
+			    width: 1000%;
+			    height: 100%;
+			    background: black;
+			    position: absolute;
+			    left: -15px;
+			}
+
+			.footer-grafismo-wrapper{
+				position: relative;
+				min-height: 210px;
+
+				&:before{
+					content:"\e90c";
+					@extend .font-gs-brindes;
+					color:white;
+			        position: absolute;
+				    top: -73px;
+				    font-size: 278px;
+				    left: -28px;
+				}
+			}
+		}
+
+		.central-atendimento{
+			a{
+				color: $cinza-claro;
+				&:hover{
+					color: $amarelo;
+				}
+			}
+			.footer-title{
+				font-size: 14px;
+			}
+		}
+		
+		.footerMenu{
+			width: 100%;
+
+			li{
+				a{
+					color: $cinza-claro;
+					font-size: 14px;
+					@extend .font-default;
+
+					&:hover{
+						color: $amarelo;
+					}
+				}
+			}
+		}
+
+		.social-wrapper{
+			margin-top: 30px;
+		}
+
+		.virtual-wrapper{
+			text-align: center;
+
+			.VI{
+				@extend .hide-font;
+				position: relative;
+				display: block;
+
+				&:before, &:after{
+					@extend .font-gs-brindes;
+					font-size: 22px;
+					display: inline-block;
+					line-height: 30px;
+				}
+
+				&:before{
+					content: "\e90a";
+					margin-right: 10px;
+					color: #33cc33;
+
+				}
+
+				&:after{
+					content: "\e909";
+					color: $cinza-claro;
+				}
+
+			}
+		}
+
+
+		.envio-wrapper{
+			.lista-envios{
+				.correios{
+					span{
+						display: inline-block;
+						background: transparent url('#{$img-folder}icones.png') no-repeat;
+						background-position: 0 0;
+						font-size: 0;
+						line-height: 0;
+						color: transparent;
+						min-height: 40px;
+						min-width: 160px;
+						max-width: 160px;
+					}
+				}
+			}
+		}
+
+		.institucional-wrapper, .contatos-wrapper, .selos-wrapper, .virtual-wrapper{
+			@media screen and (max-width:$sm){
+				text-align: center;
+				padding-bottom: 20px;
+			}
+		}
+
+
+		.selos-wrapper{
+			img{
+				display: block;
+    			margin: 0 auto;
+			}
+		}
+	}
+
+	.footer-bottom-wrapper{
+		text-align: center;
+
+		p{
+			font-size: 15px;
+			border: none;
+			margin-bottom: 0!important;
+			padding: 0;
+			text-align: center;
+		}
+
+		.pagamento-wrapper{
+			.footer-title{
+				display: inline-block;
+			}
+		}
+
+		.midias-wrapper{
+			h2{
+				display:inline-block;
+			}
+
+			ul{
+				display:inline-block;
+				text-align: center;
+			    vertical-align: bottom;
+			    margin-left: 10px;
+
+				li{
+					display:inline-block;
+
+					a{
+						display: block;
+						@extend .hide-font;
+						min-width: 48px;
+						min-height: 48px;
+						max-width: 48px;
+						max-height: 48px;
+						position: relative;
+						margin-right: 10px;
+
+
+						&:before{
+							position: absolute;
+							top: 0;
+							left:0;
+							width:100%;
+							height: 100%;
+							@extend .font-fontawesome;
+							font-size: 30px;
+							display:block;
+						    text-align: center;
+						    padding: 0;
+						    line-height: 48px;
+							@include border-radius(30px);
+							@include transition(all 300ms ease-in-out 0ms);
+						}
+
+
+						&.youtube{
+							&:before{
+								background: red;
+								content: "\f16a";
+							}
+
+							&:hover{
+								&:before{
+									background: darken(red, 15%);
+								}
+							}
+						}
+
+						&.facebook{
+							&:before{
+								background: blue;
+								content: "\f09a";
+							}
+
+							&:hover{
+								&:before{
+									background: darken(blue, 15%);
+								}
+							}
+						}
+
+						&.linkedin{
+							&:before{
+								background: darkblue;
+								content: "\f0e1";
+							}
+
+							&:hover{
+								&:before{
+									background: darken(darkblue, 15%);
+								}
+							}
+						}
+
+						&.instagram{
+							&:before{
+								background: steelblue;
+								content: "\f16d";
+							}
+
+							&:hover{
+								&:before{
+									background: darken(steelblue, 15%);
+								}
+							}
+						}
+
+						&.twitter{
+							&:before{
+								background: cyan;
+								content: "\f099";
+							}
+
+							&:hover{
+								&:before{
+									background: darken(cyan, 15%);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.timelogotray{
+    white-space: normal;
+}

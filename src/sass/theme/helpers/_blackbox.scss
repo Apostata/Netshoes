@@ -1,0 +1,498 @@
+.blackBox{
+	@include translate(0%, 0);
+	@include opacity(0);
+    //@include transition(all 300ms ease-in-out 0, z-index 10ms ease-in, 0);
+    @include transition(opacity 300ms ease-in-out 151ms, z-index 1ms ease-in-out 301ms);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+
+    &.open{
+    	
+		@include translate(0%, 0);
+		@include transition(z-index 1ms ease-in 0ms, opacity 300ms ease-in-out 1ms);
+		@include opacity(100);
+		z-index: 999999;
+
+		
+
+		&:before{
+			@include opacity(70);
+			@include transition(all 300ms ease-in-out 150ms);
+		}
+		
+		.menuWrapper-resp{
+			@include translate(0%, 0);
+			@include transition(all 300ms ease('in-out-cubic') 150ms);
+
+			.responsiveContainer{
+				
+			}
+
+			.close-box{
+			
+				a.close-btn{
+					display: block;
+				}
+			}
+		}
+
+	}
+
+	&:before{
+		content: "";
+		background-color: black;
+		opacity: 0;
+		z-index: -1;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		@include transition(all 300ms ease-in-out);
+	}
+
+	figure.img-logo{
+		padding: 0;
+		//height: 12%;
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 80%;
+		height: 20%!important;
+
+		a{
+			min-width: 0;
+			text-align: center;
+			display: block;
+			width: 100%;
+			//margin-left: -10px;
+		}
+		img{
+			padding: 10px 0;
+			width: 100%;
+			max-width: 100px;
+			display: block;
+			margin: 0 20% 0 auto;
+			//margin-left: -3%;
+		}
+	}
+
+	.close-box{
+		width: 100%;
+		height: 10%!important;
+		//background: white;
+		
+
+		a.close-btn{
+			    display: none;
+			    max-width: 35px;
+			    cursor: pointer;
+			    //margin: 0 auto;
+
+			&:before{
+				@extend .font-fontawesome;
+		        content: "";
+			    font-size: 30px;
+			    display: block;
+			    color: black;
+			    background-color: white;
+			    text-align: center;
+			    //border-radius: 40px;
+			    padding: 3px 0px;
+			    //margin-top: 5px;
+			}
+
+			&.close-btn{
+				&:before{
+					content: "\f00d";
+				}
+			}
+		}
+	}
+
+	.menuWrapper-resp{
+	    height: 100%;
+	    width: 70%;
+     	max-width: 400px;
+	    position: relative;
+	    overflow: hidden;
+	    background: white;
+	    @include translate(-100%, 0);
+		@include transition(all 300ms ease('in-out-cubic') 100ms);
+	}
+
+	.responsiveContainer{
+		position: relative;
+	    //background: white;
+        width: 103.5%;
+	    height: 90%;
+	    overflow: auto;
+	    margin-right: 15px;
+	    padding-right: 30px;
+
+	}
+
+	/*.responsiveContainer::-webkit-scrollbar{
+	    display: none;
+	}*/
+
+	.responsiveMenu{
+		width: 103%;
+		display: block;
+		//margin-top: 60px;
+
+		li.lvl1{
+			width: 100%;
+			background-color: white;
+			border-bottom: black solid 1px;
+			text-align: center;
+			cursor: pointer;
+			position: relative;
+			display: block;
+
+			a{
+				font-size: 18px;
+				padding: 10px 0 10px 0%;
+				@include box-sizing(border-box);
+				width: 100%;
+				display: block;
+				text-align: center;
+			}
+
+			.link-name{
+				color: black;
+				font-size: 18px;
+				max-width: 89.66667%;
+				display: block;
+				
+				text-align: left;
+				//padding-left: 0;
+				//position: relative;
+
+			}
+
+			.link-more{
+
+			}
+		}
+
+		ul.sub_menu, .mainSubMenu2{
+
+			clear: both;
+			float: none;
+			width: 100%;
+			display: none;
+			//background-color: $cinza-claro;
+
+			li.lvl2{
+				width: 100%;
+				padding-left: 0;
+				text-align: center;
+				position: relative;
+				display: block;
+				@include transition(all 200ms ease-in-out);
+				@extend %clearfix;
+
+			}
+		}
+
+		li.lvl1, li.lvl2, li.lvl3{
+			display: block;
+			@extend %clearfix;
+			
+			a.collapse{
+				&:before{
+					color: black;
+				}
+			}
+
+			&:hover{
+				background-color: black;
+				color: white;
+				@include transition(all 300ms ease-in-out);
+				a{
+					color: white;
+
+					&:before{
+						color: white;
+					}
+				}
+			}
+
+			&.hasSub{
+				a.link-categ{
+					width: 79%;
+					padding-left: 10%;
+					text-align:left;
+					float: left;
+
+				}
+
+				a.collapse{
+					display: block;
+					width: 15%;
+					padding: 10px 0;
+					float: left;
+
+					&:before{
+					    content: "";
+					    @extend .font-fontawesome;
+					    font-size: 20px;
+					    display: block;
+					    padding: 0px 0;
+					    @include rotate(180);
+						top: 10px;
+						@include transition(all 300ms ease-in-out);
+					}
+
+					&.collapse{
+						&:before{
+							content: "\f077";
+						}
+					}
+
+					&.rotacionar{
+						&:before{
+							content: "";
+							@extend .font-fontawesome;
+							font-size: 20px;
+							display: block;
+							 @include rotate(0);
+							top: 10px;
+							@include transition(all 300ms ease-in-out);
+						}
+
+						&.rotacionar{
+							&:before{
+								content: "\f077";
+							}
+						}
+					}
+				}
+
+			}
+
+			&.noSub{
+				a.link-categ{
+					width: 80%;
+					padding-left: 20%;
+					text-align: left;
+				}
+			}
+		}
+
+		li.lvl1{
+			li.lvl2{
+				a.link-categ{
+					&:hover{
+						color: white;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.menuWrapper-resp{
+	
+	ul.responsiveMenu{
+		
+		li.lvl1{
+			width: 100%;
+			background-color: white;
+			border-bottom: black solid 1px;
+			text-align: center;
+			cursor: pointer;
+			position: relative;
+			display: inline-block;
+
+			a.link-categ{
+				color: black;
+				font-size: 18px;
+				width: 100%;
+				display: inline-block;
+				padding: 10px 0;
+				//padding-left: 0;
+				//position: relative;
+
+
+				&[title="Figuras de Ação / Estatuetas"]{
+					&:before {
+					    content: "\e902";
+					    @extend .font-gs-brindes;
+					    position: absolute;
+					    left: 5%;
+					    top: -2px;
+					    font-size: 35px;
+					}
+				}
+
+				&[title="Bonecas"]{
+					&:before {
+					    content: "\e904";
+					    @extend .font-gs-brindes;
+					    position: absolute;
+					    left: 5%;
+					    top: 2px;
+					    font-size: 30px;
+					}
+				}
+
+				&[title="Brinquedos"]{
+					&:before {
+					    content: "\e903";
+					    @extend .font-gs-brindes;
+					    position: absolute;
+					    left: 5%;
+					    top: 2px;
+					    font-size: 30px;
+					}
+				}
+
+				&[title="Lamy"]{
+					&:before {
+					    content: "\e905";
+					    @extend .font-gs-brindes;
+					    position: absolute;
+					    left: 5%;
+					    top: 4px;
+					    font-size: 25px;
+					}
+				}
+
+				&[title="Moleskine"]{
+					&:before {
+					    content: "\e900";
+					    @extend .font-gs-brindes;
+					    position: absolute;
+					    left: 5%;
+					    top: 4px;
+					    font-size: 25px;
+					}
+				}
+
+				&[title="Outros Produtos"]{
+					&:before {
+					    content: "\e901";
+					    @extend .font-gs-brindes;
+					    position: absolute;
+					    left: 5%;
+					    top: 4px;
+					    font-size: 25px;
+					}
+				}
+
+				&[title="Zippo"]{
+					&:before {
+					    content: "\e906";
+					    @extend .font-gs-brindes;
+					    position: absolute;
+					    left: 5%;
+					    top: 4px;
+					    font-size: 25px;
+					}
+				}
+
+				&:hover{
+					color: black;
+				}
+			}
+		}
+
+		ul.sub_menu, .mainSubMenu2{
+			float: none;
+			width: 100%;
+			display: none;
+			background-color: $cinza-claro;
+
+			li.lvl2{
+				width: 100%;
+				padding-left: 0;
+				text-align: center;
+				position: relative;
+				display: inline-block;
+				@include transition(all 200ms ease-in-out 0ms);
+
+
+				&:hover{
+					background-color: black;
+					@include transition(all 300ms ease-in-out 0ms);
+				}
+			}
+		}
+
+		li.lvl1, li.lvl2, li.lvl3{
+
+			&.hasSub{
+				a.link-categ{
+					width: 57%;
+					padding-left: 21%;
+				}
+
+				a.collapse{
+					display: inline-block;
+					width: 20%;
+					padding: 10px 0;
+
+					&:before{
+					    content: "";
+					    @extend .font-fontawesome;
+					    font-size: 20px;
+					    color: #000;
+					    display: block;
+					    padding: 0px 0;
+						@include rotate(180);
+						top: 10px;
+						@include transition(all 300ms ease-in-out 0ms);
+					}
+
+					&.collapse{
+						&:before{
+							content: "\f077";
+						}
+					}
+
+					&.rotacionar{
+						&:before{
+							content: "";
+							@extend .font-fontawesome;
+							font-size: 20px;
+							color: black;
+							display: block;
+							@include rotate(0);
+							top: 10px;
+							@include transition(all 300ms ease-in-out 0ms);
+						}
+
+						&.rotacionar{
+							&:before{
+								content: "\f077";
+							}
+						}
+					}
+				}
+
+			}
+
+			&.noSub{
+				a.link-categ{
+					width: 100%;
+					padding-left: 0%;
+				}
+			}
+		}
+
+		li.lvl1{
+			li.lvl2{
+				a.link-categ{
+					&:hover{
+						color: white;
+					}
+				}
+			}
+		}
+	}
+}

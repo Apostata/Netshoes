@@ -1,0 +1,54 @@
+[class^="netshoes-"], [class*=" netshoes-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'netshoes' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.netshoes-scars:before {
+  content: "\e90c";
+}
+.netshoes-file-case:before {
+  content: "\e900";
+}
+.netshoes-login-porta-arredondada:before {
+  content: "\e901";
+}
+.netshoes-star-list:before {
+  content: "\e902";
+}
+.netshoes-box:before {
+  content: "\e903";
+}
+.netshoes-credit-cards-payment:before {
+  content: "\e904";
+}
+.netshoes-quality:before {
+  content: "\e905";
+}
+.netshoes-magnifier:before {
+  content: "\e906";
+}
+.netshoes-letter:before {
+  content: "\e907";
+}
+.netshoes-whatsapp:before {
+  content: "\e908";
+}
+.netshoes-ideas-captalized:before {
+  content: "\e909";
+}
+.netshoes-virtual-captalized:before {
+  content: "\e90a";
+}
+.netshoes-shopping-cart:before {
+  content: "\e90b";
+}

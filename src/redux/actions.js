@@ -18,3 +18,9 @@ export const removeCartItem =(product)=>{
         product
     }
 };
+
+export let toggleShowCart = ()=>{
+	return{
+		type:'TOGGLE_SHOW_CART'
+	}
+};

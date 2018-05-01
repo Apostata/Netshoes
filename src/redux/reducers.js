@@ -24,3 +24,15 @@ export const cartReducer = (state=[], action)=>{
             return state;
     }
 }
+
+export const toogleCartReducer = (state=false, action)=>{
+     switch(action.type){
+        case 'TOGGLE_SHOW_CART':{
+            return !state;
+            
+        }
+        default:{
+            return state;
+        }
+    }
+}

@@ -1,0 +1,137 @@
+.prev-box{
+	display: none;
+}
+
+body{
+	@extend .font-default;
+	padding: 0;
+	height: 100%;
+	line-height: 1.428571429;
+	background: white!important;
+	
+	&.open{
+		//overflow: hidden;
+
+	}
+
+	&.info{
+		margin: 0;
+	}
+}
+
+*{
+	a{
+		color: white;
+		@include transition(all 300ms ease-in-out 0ms);
+		line-height: 1.428571429;
+
+		&:hover{
+			text-decoration: none;
+			color: $cinza-medio;
+		}
+	}
+
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-weight: normal;
+	line-height: 1.428571429;
+
+}
+
+.container{
+	background-image: none; 
+}
+
+.hide-font{
+	font-size: 0;
+	lin-height: 0;
+	color: trasparent;
+	&:before, &:after{
+		line-height: 1.42;
+	    font-size: 30px;
+	    color:white;
+	}
+}
+
+.botao-prosseguir-compra{
+	background: $cor-destaque!important;
+	background-image: none!important;
+	border: none;
+	@extend .font-default;
+    font-size: 20px;
+    display: inline-block;
+    padding: 5px 15px;
+    min-height: 35px;
+    border: none!important;
+    outline: 0;
+    @include border-radius(3px);
+    //text-transform: uppercase;
+    color: white!important;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    font-weight: normal;
+    vertical-align: top;
+	margin: 0 auto;
+	//.box-shadow(~"2px 2px 5px 0 @{preto}");
+	@include transition(all 300ms ease-in-out);
+    min-width: 200px;
+    text-align: left;
+
+	.botao-commerce-img{
+		font-size: 22px;
+		font-weight: normal;
+		text-transform: none!important;
+		display: block;
+		text-align: center;
+		padding: 0;
+		color: white!important;
+	}
+	
+	&:hover{
+		@include box-shadow(inset 0 0 0 2px $cor-destaque);
+		background: darken($cor-destaque, 15%)!important;
+	}
+}
+
+.container{
+	width: 100%;
+	max-width: 1350px;
+
+	@media screen and (min-width: $md) {
+		width: 100%;
+	}
+
+	@media screen and (min-width: $sm) {
+		width: 100%;
+	}
+
+	@media screen and (min-width: $xs) {
+		width: 100%;
+	}
+}
+
+.hideText-showIcon{
+
+
+	&:before, &:after{
+		display:inline-block;
+		content:"";
+		@extend .font-fontawesome;
+		line-height: 1.42;
+		font-size: 30px;
+		color: $amarelo;
+		position: relative;
+    	top: 6px;
+	}
+}
+
+.main-wrapper{
+	
+}
