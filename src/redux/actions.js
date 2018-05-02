@@ -19,6 +19,13 @@ export const removeCartItem =(product)=>{
     }
 };
 
+export const addSameCartItem = (product)=>{
+    return{
+        type: 'ADD_SAME_CART_ITEM',
+        product
+    }
+}
+
 export let toggleShowCart = ()=>{
 	return{
 		type:'TOGGLE_SHOW_CART'

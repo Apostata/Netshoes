@@ -4,13 +4,13 @@ export default class ItemList extends React.Component{
         super(props)
     }
 
-    onClickVariation(size){
-        console.log(size);
-    }
-
     render(){
+        let {selectedSize} = this.props;
+        let {classe} = this.props;
+
+        
         return(
-            <li onClick={()=>{this.onClickVariation(this.props.size)}}>{this.props.size}</li>
+            <li className={classe} onClick={()=>{selectedSize(this.props.size)}}>{this.props.size}</li>
         )
     }
 }

@@ -5,6 +5,7 @@
     z-index: 0;
     width: 100%;
     height: 100%;
+    @include transition(z-index 1ms ease-in-out 300ms);
 
     &:before{
         content: "";
@@ -28,11 +29,13 @@
         background: $cinza-escuro;
         min-height: 100%;
         @include translate(100%, 0);
+        @include transition(all 300ms ease-in-out 0ms);
         
         .cart-btn-wrapper{
             @extend .col-xs-12;
             text-align: left;
             border-bottom: 1px solid black;
+            z-index: 1;
 
             .btn-cart{
                 display: block;
@@ -69,6 +72,7 @@
 .cart-opened{
     .cart-box-wrapper{
         z-index: 100;
+        @include transition(z-index 1ms ease-in-out 0ms);
 
         &:before{
             @include opacity(80);

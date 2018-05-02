@@ -13,6 +13,22 @@ export const cartReducer = (state=[], action)=>{
                 }
             ];
         
+        case 'ADD_SAME_CART_ITEM':
+            return state.map((product)=>{
+            
+            if(product.id === action.product.id){
+                let updatedQtd = product.qtd + 1;	
+            
+                return {
+                    ...product,
+                    qtd: updatedQtd,
+                };
+            }
+            else{
+                return product
+            }
+        });
+        
         case 'REMOVE_CART_ITEM':
             return state.filter(({id}) =>{
                 return id !== action.product.id

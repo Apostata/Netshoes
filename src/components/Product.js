@@ -10,13 +10,58 @@ const imagePath = require("../images/familia.jpg")
 export class Product extends React.Component{
     constructor(props){
         super(props)
+
+        this.selectedProduct = this.props.product;
+        this.selectedSize;
+
+        this.state={
+            isSizeSelected: false,
+            selectedSize: ""
+        }
+    }
+
+    onClickVariation(size){
+        let {product} = this.props;
+        let {selectedProduct} = this;
+        let {selectedSize} = this;
+
+        console.log(size);
+
+        selectedSize =  ShoppingApi.filterSelectedSize(size, product);
+
+        this.selectedProduct ={
+            ...selectedProduct,
+            id: product.id + selectedSize,
+            availableSizes : selectedSize
+        };
+
+        this.selectedSize = size;
+        
+        this.setState({
+            isSizeSelected: true,
+            selectedSize: this.selectedSize
+        })
     }
 
     addToCart(){
         let {dispatch} = this.props;
         let {product} = this.props;
+        let {selectedProduct} = this;
+        let {selectedSize} = this;
+        let alreadyInCart = ShoppingApi.verifyAlreadyInCart(selectedSize, selectedProduct);
 
-        dispatch(actions.addCartItem(product))
+        if(alreadyInCart){
+           dispatch(actions.addSameCartItem(selectedProduct))
+        }
+        else{
+            selectedProduct = {
+                ...selectedProduct,
+                qtd: 1
+            };
+            dispatch(actions.addCartItem(selectedProduct))
+        }
+        console.log(selectedProduct);
+        
     }
 
     removeFromCart(){
@@ -28,7 +73,16 @@ export class Product extends React.Component{
 
     render(){
         let {product} = this.props;
-        let renderInstallments = ()=>{
+        let {isSizeSelected} = this.state;
+        let {selectedSize} = this.state;
+
+        let renderQtd = () =>{
+            if(product.qtd){
+                return(<div className="qtd-wrapper">Quantidade: {product.qtd}</div>)
+            }
+        };
+
+        let renderInstallments = () =>{
             let installmentPrice = (product.price / product.installments).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2});
             return(
                 <div className="installments">
@@ -42,6 +96,14 @@ export class Product extends React.Component{
                 </div>
             )
         };
+
+        let renderSizeSelectedMessae = () =>{
+            if(!isSizeSelected){
+                return(
+                    <p>Selecione um tamanho!</p>
+                )
+            }
+        }
 
         return(
             <div className="col-xs-12 col-sm-6 col-md-4 product">
@@ -62,9 +124,17 @@ export class Product extends React.Component{
                             <span className="price">{product.price.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits: 2})}</span>
                         </div>
                         {renderInstallments()}
-                        <VariationList variations={product.availableSizes}/>
+                        <VariationList variations={product.availableSizes} selectedSizes={this.onClickVariation.bind(this)} variationSelected={selectedSize}/>
+                        {renderQtd()}    
                         <div className="addTocart">
-                            <a className="add" onClick={()=>this.addToCart()}>Adicionar ao carrinho</a>
+                            <a className="add" onClick={
+                                ()=>{
+                                    if(isSizeSelected){
+                                        this.addToCart()
+                                    }
+                                }
+                            }>Adicionar ao carrinho</a>
+                            {renderSizeSelectedMessae()}
                         </div>
                     </div>
                 </div>
