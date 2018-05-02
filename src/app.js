@@ -31,7 +31,6 @@ ShoppingApi.fetchProducts()
 
         let cartItens = ShoppingApi.getCart()
         store.dispatch(actions.addCart(cartItens));
-        
         render(AppRoot, products);
     }
 );

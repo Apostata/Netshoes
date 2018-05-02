@@ -36,6 +36,7 @@
             text-align: left;
             border-bottom: 1px solid black;
             z-index: 1;
+            background: $cinza-escuro;
 
             .btn-cart{
                 display: block;
@@ -54,6 +55,10 @@
                         color: darken(red, 15%);
                     }
                 }
+            }
+
+            .total{
+                display: none;
             }
         }
 

@@ -22,9 +22,12 @@ export class CartButton extends React.Component{
     }
 
     render(){
+        let {total} = this.props;
+
         return(
             <div className="cart-btn-wrapper">
                 <a className="btn-cart" onClick={()=>this.showHideCart()}>Abir/Fechar Carrinho</a>
+                <span className="total">{total}</span>
             </div>
         )
     }

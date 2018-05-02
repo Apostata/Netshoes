@@ -26,8 +26,28 @@ export const addSameCartItem = (product)=>{
     }
 }
 
-export let toggleShowCart = ()=>{
+export const toggleShowCart = ()=>{
 	return{
 		type:'TOGGLE_SHOW_CART'
 	}
+};
+
+export const addTotalInCart = ()=>{
+	return{
+		type:'ADD_TOTAL_IN_CART'
+	}
+};
+
+export const removeTotalInCart = (qtd)=>{
+	return{
+        type:'REMOVE_TOTAL_IN_CART',
+        qtd
+	}
+};
+
+export const setTotalIncart = (qtd)=>{
+    return{
+        type: 'SET_TOTAL_IN_CART',
+        qtd
+    }
 };

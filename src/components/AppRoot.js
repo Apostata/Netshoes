@@ -12,18 +12,25 @@ const imagePath = require("../images/logo.png");
 export class AppRoot extends React.Component {
     constructor(props){
         super(props);
-        let cart = this.props;
 		this.state={
             cart: ShoppingApi.getCart(),
-            togglecart: false
+            togglecart: false,
+            cartTotal: this.updateTotal(ShoppingApi.getCart())
         }
     }
     
+    updateTotal(cart){
+        let totalInCart = ShoppingApi.getTotalInCart(cart);
+        let {dispatch} = this.props;
+        dispatch(actions.setTotalIncart(totalInCart));
+        return totalInCart;
+    }
 
     componentWillReceiveProps(nextProps){
         this.setState({
             cart: nextProps.cart,
-            toggleCart: nextProps.toggleCart
+            toggleCart: nextProps.toggleCart,
+            cartTotal: nextProps.cartTotal
         });
     }
     
@@ -37,6 +44,7 @@ export class AppRoot extends React.Component {
         let {products} = this.props;
         let {cart} = this.state;
         let {toggleCart} = this.state;
+        let {cartTotal} = this.state;
 
         let todoCartClassName = toggleCart ? 'store-wrapper cart-opened' : 'store-wrapper';
 
@@ -46,7 +54,7 @@ export class AppRoot extends React.Component {
                     <div className="cart-box-wrapper">
                         <div className="cart-list">
                             <div className="container">
-                                <CartButton />    
+                                <CartButton total={cartTotal}/>    
                                 <CartList products={cart} />
                             </div>    
                         </div>
@@ -106,7 +114,7 @@ export class AppRoot extends React.Component {
                                                 </form>
                                             </div>
                                             <div className="col-xs-6 col-sm-6 col-sm-offset-0 col-sm-6 cart-wrapper">
-                                                <CartButton />
+                                                <CartButton total={cartTotal}/>
                                             </div>    
                                         </div>    
                                     </div>

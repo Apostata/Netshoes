@@ -1,12 +1,15 @@
 @charset "UTF-8"; //para usar acentos, deve estar em todos os arquivos
 
 .cart-wrapper{
+	position: relative;
+
 	.btn-cart{
 		@extend .hide-font;
 		display: inline-block;
 		min-height: 32px;
 		min-width: 32px;
-
+		cursor: pointer;
+		
 		&:before{
 			@extend .font-netshoes;
 			font-size: 35px;
@@ -15,8 +18,27 @@
 
 		&:hover{
 			&:before{
-				color: $cinza-claro;
+				color: $amarelo;
+			}
+
+			& + .total{
+				color: $amarelo;
+				background: black;
+				border-color: $amarelo;
 			}
 		}
+	}
+
+	.total{
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 40px;
+		padding: 0 5px;
+		background: $amarelo;
+		color: black;
+		border: 1px solid black;
+		@include border-radius(10px);
+		@include transition(all 300ms ease-in-out);
 	}
 }

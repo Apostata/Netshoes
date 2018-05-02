@@ -43,12 +43,31 @@ export const cartReducer = (state=[], action)=>{
 
 export const toogleCartReducer = (state=false, action)=>{
      switch(action.type){
-        case 'TOGGLE_SHOW_CART':{
+        case 'TOGGLE_SHOW_CART':
             return !state;
             
-        }
-        default:{
+        
+        default:
             return state;
-        }
+        
+    }
+}
+
+export const totalCartReducer = (state=0, action)=>{
+    switch(action.type){
+        case 'SET_TOTAL_IN_CART':
+            return state = action.qtd;
+
+        case 'ADD_TOTAL_IN_CART':
+            return state + 1;
+            
+
+        case 'REMOVE_TOTAL_IN_CART':
+            return state - action.qtd;
+            
+        
+        default:
+            return state;
+        
     }
 }

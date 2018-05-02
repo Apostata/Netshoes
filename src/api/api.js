@@ -62,4 +62,14 @@ export default class productApi{
         localStorage.setItem('cart', JSON.stringify(products));
         return products;
     }
+
+    static getTotalInCart(cart){
+        let total = 0;
+        
+        cart.forEach((cartItem)=> {
+            total = Number(total + cartItem.qtd);
+        }, this);
+        console.log(total);
+        return total;        
+    }
 }

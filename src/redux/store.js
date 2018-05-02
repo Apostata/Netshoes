@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux"
-import {cartReducer, toogleCartReducer} from "./reducers"
+import {cartReducer, toogleCartReducer, totalCartReducer} from "./reducers"
 import thunk from "redux-thunk"
 
 const preloadedState = {}
@@ -15,7 +15,8 @@ const enhancer = composeEnhancers(applyMiddleware(thunk))
 export default initialState => {
     let reducer = combineReducers({
 		toggleCart: toogleCartReducer,
-        cart: cartReducer
+        cart: cartReducer,
+        cartTotal: totalCartReducer
     });
     
     const store = createStore(reducer, preloadedState, enhancer)
